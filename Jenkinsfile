@@ -60,6 +60,20 @@ pipeline {
       }
     }
 
+    stage('Destroy') {
+      agent { label 'build-node' }
+      steps {
+        dir('Terraform') {
+          sh ''' 
+            terraform destroy -auto-approve \
+              -var="dockerhub_username=${DOCKER_CREDS_USR}" \
+              -var="dockerhub_password=${DOCKER_CREDS_PSW}"
+          '''
+        }
+      }
+    }
+  }
+
     stage('Infrastructure') {
       agent { label 'build-node' }
       steps {

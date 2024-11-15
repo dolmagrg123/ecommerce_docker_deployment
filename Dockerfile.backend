@@ -1,0 +1,22 @@
+# i. Pull the python:3.9 base image
+FROM python:3.9
+
+# ii. Set the working directory
+WORKDIR /app
+
+# Copy the "backend" directory into the image
+COPY backend/ /app/
+
+# iii. Install django-environ and all other dependencies
+RUN pip install django-environ && pip install -r requirements.txt
+
+# iv. Run python manage.py makemigrations account, python manage.py makemigrations payments, python manage.py makemigrations product
+RUN python manage.py makemigrations account
+RUN python manage.py makemigrations payments
+RUN python manage.py makemigrations product
+
+# v. Expose port 8000
+EXPOSE 8000
+
+# vi. Set the command to start the Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
