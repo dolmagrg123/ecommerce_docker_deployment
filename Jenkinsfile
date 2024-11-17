@@ -2,7 +2,10 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_CREDS = credentials('docker-hub-credentials')
+    DOCKER_CREDS_USR = credentials('DOCKER_CREDS_USR')
+    DOCKER_CREDS_PSW = credentials('DOCKER_CREDS_PSW')
+    AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY')
   }
 
   stages {
@@ -60,12 +63,10 @@ pipeline {
       }
     }
 
-    stage('Infrastructure') {
+
+    stage('Apply') {
       agent { label 'build-node' }
       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')
-                         ]) {
         dir('Terraform') {
           sh '''
             echo "Current working directory:"
@@ -73,7 +74,10 @@ pipeline {
             terraform init
             terraform apply -auto-approve \
               -var="dockerhub_username=${DOCKER_CREDS_USR}" \
-              -var="dockerhub_password=${DOCKER_CREDS_PSW}"
+              -var="dockerhub_password=${DOCKER_CREDS_PSW}" \
+              -var="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" \
+              -var="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+
           '''
         }
       }
