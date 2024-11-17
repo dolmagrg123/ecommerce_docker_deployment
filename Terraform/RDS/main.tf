@@ -1,4 +1,4 @@
-resource "aws_db_instance" "postgres_db" {
+resource "aws_db_instance" "main" {
   identifier           = "ecommerce-db"
   engine               = "postgres"
   engine_version       = "14.13"

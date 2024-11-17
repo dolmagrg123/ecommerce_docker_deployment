@@ -1,16 +1,16 @@
 output "rds_endpoint" {
-  value = aws_db_instance.postgres_db.endpoint
+  value = aws_db_instance.main.endpoint
 }
 
 output "rds_db_name" {
-  value = aws_db_instance.postgres_db.db_name
+  value = aws_db_instance.main.db_name
 }
 
 output "rds_username" {
-  value = aws_db_instance.postgres_db.username
+  value = aws_db_instance.main.username
 }
 
 output "rds_password" {
-  value = aws_db_instance.postgres_db.password
+  value = aws_db_instance.main.password
   sensitive = true
 }
