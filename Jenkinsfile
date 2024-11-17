@@ -68,6 +68,9 @@ pipeline {
     stage('Infrastructure') {
       agent { label 'build-node' }
       steps {
+        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
+                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')
+                         ]) {
         dir('Terraform') {
           sh '''
             terraform init
@@ -77,6 +80,7 @@ pipeline {
           '''
         }
       }
+    }
     }
 
     // stage('Destroy') {

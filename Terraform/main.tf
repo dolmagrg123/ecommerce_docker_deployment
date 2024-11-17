@@ -32,6 +32,8 @@ module "EC2"{
   private_subnet_1b_id = module.VPC.private_subnet_1b_id
   public_subnet_1a_id  = module.VPC.public_subnet_1a_id
   public_subnet_1b_id  = module.VPC.public_subnet_1b_id
+  dockerhub_username = var.dockerhub_username
+  dockerhub_password = var.dockerhub_password
  
 }
 
