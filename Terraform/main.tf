@@ -32,8 +32,7 @@ module "EC2"{
   public_subnet_1b_id  = module.VPC.public_subnet_1b_id
   dockerhub_username = var.dockerhub_username
   dockerhub_password = var.dockerhub_password
-  rds_endpoint = module.RDS.rds_endpoint
- 
+  rds_endpoint = module.RDS.rds_endpoint 
 }
 
 module "LB" {

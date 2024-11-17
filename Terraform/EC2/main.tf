@@ -19,8 +19,8 @@ resource "aws_instance" "eecommerce_bastion_az1" {
 
   # Specify dependencies
   depends_on = [
-    aws_db_instance.main,
-    aws_nat_gateway.main
+    module.rds,
+    module.vpc
   ]
   subnet_id = var.public_subnet_1a_id
   tags = {
@@ -44,8 +44,8 @@ resource "aws_instance" "ecommerce_bastion_az2" {
 
   # Specify dependencies
   depends_on = [
-    aws_db_instance.main,
-    aws_nat_gateway.main
+    module.rds,
+    module.vpc
   ]
   subnet_id = var.public_subnet_1b_id
   tags = {
@@ -70,8 +70,8 @@ resource "aws_instance" "ecommerce_app_az2" {
 
   # Specify dependencies
   depends_on = [
-    aws_db_instance.main,
-    aws_nat_gateway.main
+    module.rds,
+    module.vpc
   ]
   subnet_id = var.private_subnet_1b_id
   tags = {
@@ -96,8 +96,8 @@ resource "aws_instance" "ecommerce_app_az1" {
 
   # Specify dependencies
   depends_on = [
-    aws_db_instance.main,
-    aws_nat_gateway.main
+    module.rds,
+    module.vpc
   ]
   subnet_id = var.private_subnet_1a_id
   tags = {
