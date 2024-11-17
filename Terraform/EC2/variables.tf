@@ -10,3 +10,5 @@ variable public_subnet_1b_id{}
 
 variable dockerhub_username{}
 variable dockerhub_password{}
+
+variable rds_endpoint{}
