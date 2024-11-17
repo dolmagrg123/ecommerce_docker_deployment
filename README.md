@@ -180,3 +180,18 @@ NOTE: Notice what is required for this user data block.  (var.dockerhub_username
 
     f. A "CONCLUSION" statement as well as any other sections you feel like you want to include.
 
+Issues:
+
+make sure python is installed
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install fontconfig openjdk-17-jre software-properties-common -y
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+
+need to ensure docker is added to users
+```
+sudo usermod -aG docker <username>
+```
