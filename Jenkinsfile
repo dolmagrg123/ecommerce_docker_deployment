@@ -74,9 +74,7 @@ pipeline {
             terraform init
             terraform apply -auto-approve \
               -var="dockerhub_username=${DOCKER_CREDS_USR}" \
-              -var="dockerhub_password=${DOCKER_CREDS_PSW}" \
-              -var="AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" \
-              -var="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+              -var="dockerhub_password=${DOCKER_CREDS_PSW}"
 
           '''
         }
