@@ -5,8 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copy the "backend" directory into the image
-COPY backend/requirements.txt /app/
-COPY backend/manage.py /app/
+COPY backend/ /app/
 
 # iii. Install django-environ and all other dependencies
 RUN pip install django-environ && pip install -r requirements.txt
