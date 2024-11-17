@@ -48,14 +48,14 @@ pipeline {
         
         // Build and push backend
         sh '''
-          docker build -t ${DOCKER_CREDS_USR}/ecommercebackend:${BUILD_NUMBER} -f Dockerfile.backend .
-          docker push ${DOCKER_CREDS_USR}/ecommercebackend:${BUILD_NUMBER}
+          docker build -t ${DOCKER_CREDS_USR}/ecommercebackend:latest -f Dockerfile.backend .
+          docker push ${DOCKER_CREDS_USR}/ecommercebackend:latest
         '''
         
         // Build and push frontend
         sh '''
-          docker build -t ${DOCKER_CREDS_USR}/ecommercefrontend:${BUILD_NUMBER} -f Dockerfile.frontend .
-          docker push ${DOCKER_CREDS_USR}/ecommercefrontend:${BUILD_NUMBER}
+          docker build -t ${DOCKER_CREDS_USR}/ecommercefrontend:latest -f Dockerfile.frontend .
+          docker push ${DOCKER_CREDS_USR}/ecommercefrontend:latest
         '''
       }
     }
