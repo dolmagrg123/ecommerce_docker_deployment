@@ -14,3 +14,9 @@ variable dockerhub_password{}
 variable rds_endpoint{}
 variable rds_id{}
 variable nat_id{}
+
+variable "latest_version" {
+  description = "The latest version of the application"
+  type        = string
+  default = "1.0.0"
+}

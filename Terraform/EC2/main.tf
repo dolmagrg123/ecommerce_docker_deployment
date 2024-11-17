@@ -14,7 +14,8 @@ resource "aws_instance" "eecommerce_bastion_az1" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
-    })
+    }),
+    LATEST_VERSION = var.latest_version
   }))
 
   # Specify dependencies
@@ -39,7 +40,8 @@ resource "aws_instance" "ecommerce_bastion_az2" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
-    })
+    }),
+    LATEST_VERSION = var.latest_version
   }))
 
   # Specify dependencies
@@ -65,7 +67,8 @@ resource "aws_instance" "ecommerce_app_az2" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
-    })
+    }),
+    LATEST_VERSION = var.latest_version
   }))
 
   # Specify dependencies
@@ -91,7 +94,8 @@ resource "aws_instance" "ecommerce_app_az1" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
-    })
+    }),
+    LATEST_VERSION = var.latest_version
   }))
 
   # Specify dependencies

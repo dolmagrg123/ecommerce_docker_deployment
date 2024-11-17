@@ -32,8 +32,8 @@ echo "Verifying Docker Compose installation..."
 docker-compose --version
 
 # Set Docker Hub credentials
-DOCKER_USERNAME="your_dockerhub_username"
-DOCKER_PASSWORD="your_dockerhub_password"
+DOCKER_USERNAME=${DOCKER_CREDS_USR}
+DOCKER_PASSWORD=${DOCKER_CREDS_PSW}
 
 # ii. log into DockerHub;
 
