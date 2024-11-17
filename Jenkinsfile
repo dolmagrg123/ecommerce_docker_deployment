@@ -68,6 +68,8 @@ pipeline {
         //                  ]) {
         dir('Terraform') {
           sh '''
+            echo "Current working directory:"
+            pwd
             terraform init
             terraform apply -auto-approve \
               -var="dockerhub_username=${DOCKER_CREDS_USR}" \
