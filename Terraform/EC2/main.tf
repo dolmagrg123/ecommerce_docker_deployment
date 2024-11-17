@@ -12,7 +12,7 @@ resource "aws_instance" "eecommerce_bastion_az1" {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
-    docker_compose = templatefile("../${path.module}/compose.yaml", {
+    docker_compose = templatefile("${path.module}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
     })
   }))
@@ -37,7 +37,7 @@ resource "aws_instance" "ecommerce_bastion_az2" {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
-    docker_compose = templatefile("../${path.module}/compose.yaml", {
+    docker_compose = templatefile("${path.module}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
     })
   }))
@@ -63,7 +63,7 @@ resource "aws_instance" "ecommerce_app_az2" {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
-    docker_compose = templatefile("../${path.module}/compose.yaml", {
+    docker_compose = templatefile("${path.module}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
     })
   }))
@@ -89,7 +89,7 @@ resource "aws_instance" "ecommerce_app_az1" {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
-    docker_compose = templatefile("../${path.module}/compose.yaml", {
+    docker_compose = templatefile("${path.module}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
     })
   }))
