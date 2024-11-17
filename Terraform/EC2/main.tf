@@ -8,7 +8,7 @@ resource "aws_instance" "eecommerce_bastion_az1" {
   instance_type     = var.instance_type  
   vpc_security_group_ids =[aws_security_group.frontend_sg.id]
   key_name          = "WL5" 
-  user_data         = base64encode(templatefile("${path.module}/deploy.sh", {
+  user_data         = base64encode(templatefile("../${path.module}/deploy.sh", {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
@@ -33,7 +33,7 @@ resource "aws_instance" "ecommerce_bastion_az2" {
   instance_type     = var.instance_type  
   vpc_security_group_ids =[aws_security_group.frontend_sg.id]
   key_name          = "WL5" 
-  user_data         = base64encode(templatefile("${path.module}/deploy.sh", {
+  user_data         = base64encode(templatefile("../${path.module}/deploy.sh", {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
@@ -59,7 +59,7 @@ resource "aws_instance" "ecommerce_app_az2" {
   instance_type     = var.instance_type     
   vpc_security_group_ids =[aws_security_group.backend_sg.id]
   key_name          = "WL5"
-  user_data         = base64encode(templatefile("${path.module}/deploy.sh", {
+  user_data         = base64encode(templatefile("../${path.module}/deploy.sh", {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
@@ -85,7 +85,7 @@ resource "aws_instance" "ecommerce_app_az1" {
   instance_type     = var.instance_type     
   vpc_security_group_ids =[aws_security_group.backend_sg.id]
   key_name          = "WL5"
-  user_data         = base64encode(templatefile("${path.module}/deploy.sh", {
+  user_data         = base64encode(templatefile("../${path.module}/deploy.sh", {
     rds_endpoint = var.rds_endpoint,
     docker_user  = var.dockerhub_username,
     docker_pass  = var.dockerhub_password,
