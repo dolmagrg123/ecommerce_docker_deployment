@@ -3,8 +3,6 @@ pipeline {
 
   environment {
     DOCKER_CREDS = credentials('docker-hub-credentials')
-    DOCKER_USERNAME = "${DOCKER_CREDS_USR}"
-    DOCKER_PASSWORD = "${DOCKER_CREDS_PSW}"
   }
 
   stages {
@@ -13,12 +11,9 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         echo "Building"
-        git clone https://github.com/dolmagrg123/ecommerce_docker_deployment.git
         python3.9 -m venv venv
         source venv/bin/activate
-        cd ecommerce_docker_deployment/backend
-        git pull
-        pip install -r requirements.txt
+        pip install -r backend/requirements.txt
         '''
       }
     }
@@ -49,18 +44,18 @@ pipeline {
     stage('Build & Push Images') {
       agent { label 'build-node' }
       steps {
-        sh 'echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin'
+        sh 'echo ${DOCKER_CREDS_PSW} | docker login -u ${DOCKER_CREDS_USR} --password-stdin'
         
         // Build and push backend
         sh '''
-          docker build -t ecommercebackend:${BUILD_NUMBER} -f Dockerfile.backend .
-          docker push ecommercebackend:${BUILD_NUMBER}
+          docker build -t ${DOCKER_CREDS_USR}/ecommercebackend:${BUILD_NUMBER} -f Dockerfile.backend .
+          docker push ${DOCKER_CREDS_USR}/ecommercebackend:${BUILD_NUMBER}
         '''
         
         // Build and push frontend
         sh '''
-          docker build -t ecommercefrontend:${BUILD_NUMBER} -f Dockerfile.frontend .
-          docker push ecommercefrontend:${BUILD_NUMBER}
+          docker build -t ${DOCKER_CREDS_USR}/ecommercefrontend:${BUILD_NUMBER} -f Dockerfile.frontend .
+          docker push ${DOCKER_CREDS_USR}/ecommercefrontend:${BUILD_NUMBER}
         '''
       }
     }
@@ -68,15 +63,15 @@ pipeline {
     stage('Infrastructure') {
       agent { label 'build-node' }
       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')
-                         ]) {
+        // withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
+        //                  string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')
+        //                  ]) {
         dir('Terraform') {
           sh '''
             terraform init
             terraform apply -auto-approve \
-              -var="dockerhub_username=${DOCKER_USERNAME}" \
-              -var="dockerhub_password=${DOCKER_PASSWORD}"
+              -var="dockerhub_username=${DOCKER_CREDS_USR}" \
+              -var="dockerhub_password=${DOCKER_CREDS_PSW}"
           '''
         }
       }
@@ -89,8 +84,8 @@ pipeline {
     //     dir('Terraform') {
     //       sh ''' 
     //         terraform destroy -auto-approve \
-    //           -var="dockerhub_username=${DOCKER_USERNAME}" \
-    //           -var="dockerhub_password=${DOCKER_PASSWORD}"
+    //           -var="dockerhub_username=${DOCKER_CREDS_USR}" \
+    //           -var="dockerhub_password=${DOCKER_CREDS_PSW}"
     //       '''
     //     }
     //   }

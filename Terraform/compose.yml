@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: <backend image tagged for dockerhub>:latest
+    image: dolmagrg123/ecommercebackend:${BUILD_NUMBER}
     environment:
       - DB_HOST=${rds_endpoint}
     ports:
@@ -15,7 +15,7 @@ services:
                 python manage.py runserver 0.0.0.0:8000"
 
   frontend:
-    image: <frontend image tagged for dockerhub>:latest
+    image: dolmagrg123/ecommercefrontend:${BUILD_NUMBER}
     ports:
       - "3000:3000"
     depends_on:
