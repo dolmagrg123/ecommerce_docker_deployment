@@ -35,7 +35,6 @@ pipeline {
       agent { label 'build-node' }
       steps {
         sh '''
-          whoami
           docker system prune -f
           git clean -ffdx -e "*.tfstate*" -e ".terraform/*"
         '''
