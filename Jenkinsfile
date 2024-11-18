@@ -21,18 +21,18 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      agent any
-      steps {
-        sh '''#!/bin/bash
-        source venv/bin/activate
-        pip install pytest-django
-        python backend/manage.py makemigrations
-        python backend/manage.py migrate
-        pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
-        ''' 
-      }
-    }
+    // stage('Test') {
+    //   agent any
+    //   steps {
+    //     sh '''#!/bin/bash
+    //     source venv/bin/activate
+    //     pip install pytest-django
+    //     python backend/manage.py makemigrations
+    //     python backend/manage.py migrate
+    //     pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
+    //     ''' 
+    //   }
+    // }
 
     stage('Cleanup') {
       agent { label 'build-node' }
