@@ -26,10 +26,11 @@ pipeline {
       steps {
         dir('backend') {
           sh '''#!/bin/bash
+          python3.9 -m venv venv
           source venv/bin/activate
           pip install pytest-django
-          python backend/manage.py makemigrations
-          python backend/manage.py migrate
+          python3.9 backend/manage.py makemigrations
+          python3.9 backend/manage.py migrate
           pytest backend/account/tests.py --verbose --junit-xml test-reports/results.xml
           ''' 
         }
