@@ -28,6 +28,7 @@ pipeline {
           sh '''#!/bin/bash
           python3.9 -m venv venv
           source venv/bin/activate
+          pip install -r backend/requirements.txt
           pip install pytest-django
           python3.9 manage.py makemigrations
           python3.9 manage.py migrate
