@@ -141,6 +141,12 @@ resource "aws_security_group" "backend_sg" {#name that terraform recognizes
     cidr_blocks = ["0.0.0.0/0"]
   }
    ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+   ingress {
     from_port   = 8000
     to_port     = 8000
     protocol    = "TCP"
