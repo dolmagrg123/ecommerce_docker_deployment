@@ -31,11 +31,11 @@ pipeline {
             pip install -r requirements.txt
             pip install pytest-django
             export DJANGO_SETTINGS_MODULE=my_project.settings
-            python3.9 manage.py makemigrations
-            python3.9 manage.py migrate
             pytest account/tests.py --verbose --junit-xml test-reports/results.xml
 
           ''' 
+            //           python3.9 manage.py makemigrations
+            // python3.9 manage.py migrate
 
         }
 
