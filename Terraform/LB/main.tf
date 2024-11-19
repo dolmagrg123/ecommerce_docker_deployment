@@ -35,12 +35,12 @@ resource "aws_lb_target_group" "frontend_target" {
 
 resource "aws_lb_target_group_attachment" "frontend_az1" {
   target_group_arn = aws_lb_target_group.frontend_target.arn
-  target_id        = var.eecommerce_bastion_az1_id
+  target_id        = var.ecommerce_app_az1_id
   port             = 3000
 }
 
 resource "aws_lb_target_group_attachment" "frontend_az2" {
   target_group_arn = aws_lb_target_group.frontend_target.arn
-  target_id        = var.ecommerce_bastion_az2_id
+  target_id        = var.ecommerce_app_az2_id
   port             = 3000
 }

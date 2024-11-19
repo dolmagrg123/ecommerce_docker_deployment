@@ -45,8 +45,8 @@ module "LB" {
   public_subnet_1a_id = module.VPC.public_subnet_1a_id
   public_subnet_1b_id = module.VPC.public_subnet_1b_id
   frontend_sg_id = module.EC2.frontend_sg_id
-  eecommerce_bastion_az1_id = module.EC2.eecommerce_bastion_az1_id
-  ecommerce_bastion_az2_id = module.EC2.ecommerce_bastion_az2_id
+  ecommerce_app_az1_id = module.EC2.ecommerce_app_az1_id
+  ecommerce_app_az2_id = module.EC2.ecommerce_app_az2_id
 }
 
 module "RDS"{
