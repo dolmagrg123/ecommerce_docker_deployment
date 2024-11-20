@@ -75,7 +75,7 @@ pipeline {
             echo "Current working directory:"
             pwd
             terraform init
-            terraform apply -auto-approve \
+            terraform destroy -auto-approve \
               -var="dockerhub_username=${DOCKER_CREDS_USR}" \
               -var="dockerhub_password=${DOCKER_CREDS_PSW}"
 
