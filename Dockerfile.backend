@@ -11,9 +11,9 @@ COPY backend/ /app/
 RUN pip install django-environ && pip install -r requirements.txt
 
 # iv. Run python manage.py makemigrations account, python manage.py makemigrations payments, python manage.py makemigrations product
-RUN python manage.py makemigrations account
-RUN python manage.py makemigrations payments
-RUN python manage.py makemigrations product
+# RUN python manage.py makemigrations account
+# RUN python manage.py makemigrations payments
+# RUN python manage.py makemigrations product
 
 # v. Expose port 8000
 EXPOSE 8000
