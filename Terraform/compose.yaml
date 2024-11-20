@@ -3,6 +3,7 @@ version: '3.8'
 services:
   backend:
     image: dolmagrg123/ecommercebackend:latest
+    container_name: app-backend-1
     environment:
       - DB_HOST=${rds_endpoint}
     ports:
@@ -16,6 +17,7 @@ services:
 
   frontend:
     image: dolmagrg123/ecommercefrontend:latest
+    container_name: app-frontend-1
     ports:
       - "3000:3000"
     depends_on:
