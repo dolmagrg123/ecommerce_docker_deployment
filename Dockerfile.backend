@@ -15,8 +15,8 @@ RUN python manage.py makemigrations account
 RUN python manage.py makemigrations payments
 RUN python manage.py makemigrations product
 
-COPY ./entry.sh /app/
-RUN chmod +x entry.sh
+COPY ./entry.sh /app/entry.sh
+RUN chmod +x /app/entry.sh
 
 # v. Expose port 8000
 EXPOSE 8000
