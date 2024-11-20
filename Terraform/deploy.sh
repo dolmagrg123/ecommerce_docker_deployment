@@ -35,6 +35,10 @@ docker-compose --version
 DOCKER_USERNAME= $docker_user
 DOCKER_PASSWORD= $docker_pass
 
+sudo groupadd docker
+sudo usermod -aG docker $(whoami)
+newgrp docker
+
 # ii. log into DockerHub;
 
 # Log in to Docker Hub
