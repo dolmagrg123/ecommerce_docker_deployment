@@ -37,6 +37,7 @@ resource "aws_instance" "ecommerce_app_az2" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
+      run_migrations="false"
     }),
     LATEST_VERSION = var.latest_version
   }))
@@ -64,6 +65,7 @@ resource "aws_instance" "ecommerce_app_az1" {
     docker_pass  = var.dockerhub_password,
     docker_compose = templatefile("${path.root}/compose.yaml", {
       rds_endpoint = var.rds_endpoint
+      run_migrations="true"
     }),
     LATEST_VERSION = var.latest_version
   }))

@@ -15,8 +15,11 @@ RUN python manage.py makemigrations account
 RUN python manage.py makemigrations payments
 RUN python manage.py makemigrations product
 
+COPY ./entry.sh /app
+RUN chmod +x entry.sh
+
 # v. Expose port 8000
 EXPOSE 8000
 
 # vi. Set the command to start the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["./entry.sh"]
